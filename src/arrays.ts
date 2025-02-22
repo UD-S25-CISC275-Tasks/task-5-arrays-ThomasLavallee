@@ -8,7 +8,10 @@ export function bookEndList(numbers: number[]): number[] {
     const listLength: number = numbers.length;
     let returnList: number[] = [];
 
+    // If list length is 1, make new list containing the one element twice
     listLength === 1 ? (returnList = [numbers[0], numbers[0]]) : returnList;
+
+    // If list length is greater than 1, new list is first and last element
     listLength > 1 ?
         (returnList = [numbers[0], numbers[listLength - 1]])
     :   returnList;
@@ -21,7 +24,11 @@ export function bookEndList(numbers: number[]): number[] {
  * number has been tripled (multiplied by 3).
  */
 export function tripleNumbers(numbers: number[]): number[] {
-    return numbers;
+    let tripledNumbers: number[] = numbers.map((currentNum: number): number => {
+        return currentNum * 3;
+    });
+
+    return tripledNumbers;
 }
 
 /**
