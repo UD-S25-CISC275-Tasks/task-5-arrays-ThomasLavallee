@@ -182,7 +182,43 @@ export function makeMath(addends: number[]): string {
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
 export function injectPositive(values: number[]): number[] {
-    console.log(values);
+    // Duplicate the values array
+    let returnList: number[] = [...values];
+    let sum: number;
 
-    return [];
+    // Find the index of the first negative number
+    let firstNegativeNumIndex: number = values.findIndex(
+        (value: number): boolean => {
+            return value < 0;
+        },
+    );
+
+    // If no negative numbers, add sum to end of list
+    if (firstNegativeNumIndex === -1) {
+        // Calculate sum
+        sum = returnList.reduce(
+            (total: number, currentValue: number): number => {
+                return total + currentValue;
+            },
+            0,
+        );
+
+        // Add sum to end of list
+        returnList.splice(returnList.length, 0, sum);
+    } else {
+        // Get total up to that index
+        sum = returnList.reduce(
+            (total: number, currentValue: number, index: number): number => {
+                index < firstNegativeNumIndex ? (total += currentValue) : total;
+
+                return total;
+            },
+            0,
+        );
+
+        // Add sum after the first negative number
+        returnList.splice(firstNegativeNumIndex + 1, 0, sum);
+    }
+
+    return returnList;
 }
