@@ -126,9 +126,22 @@ export function countShortWords(words: string[]): number {
  * then return true.
  */
 export function allRGB(colors: string[]): boolean {
-    console.log(colors);
+    // Return true for empty array
+    if (!colors.length) {
+        return true;
+    }
 
-    return false;
+    const RGBArray = ["red", "blue", "green"];
+    let answer: boolean;
+
+    // Check if every color is either RGB
+    let allMatched: boolean = colors.every((color: string): boolean => {
+        RGBArray.includes(color) ? (answer = true) : (answer = false);
+
+        return answer;
+    });
+
+    return allMatched;
 }
 
 /**
