@@ -152,9 +152,24 @@ export function allRGB(colors: string[]): boolean {
  * And the array [] would become "0=0".
  */
 export function makeMath(addends: number[]): string {
-    console.log(addends);
+    // Return 0=0 if empty array
+    if (!addends.length) {
+        return "0=0";
+    }
 
-    return "";
+    // Total up the sum of all the values in the array
+    let total: number = addends.reduce(
+        (total: number, currentNum: number): number => {
+            return total + currentNum;
+        },
+        0,
+    );
+
+    // Create the strings equations
+    let addExpression: string = addends.join("+");
+    let outstring: string = `${total}=${addExpression}`;
+
+    return outstring;
 }
 
 /**
